@@ -47,6 +47,7 @@ object SeekenServer {
   }
   
   def main(args: Array[String]) = {
-   init()
+   if(args(0) == "test") init(true)
+   else init()
   }
 }
