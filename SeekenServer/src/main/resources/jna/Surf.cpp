@@ -30,7 +30,7 @@ int thread_num;
 unsigned char** grays_holder;
 
 void exeSurf(const int id,const Mat gray){
-	imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurf.bmp",gray);
+	//imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurf.bmp",gray);
 
 	SurfFeatureDetector surf_detector; //SURF特徴点検出器 TODO: 引数について: http://opencv.jp/opencv-2.2/c/features2d_feature_detection_and_description.html
 	vector < KeyPoint > trainKeypoints;
@@ -86,7 +86,7 @@ void exeSurfFromColorMat(const int id, const Mat img) {
     }
 
     Mat o(gray.rows,gray.cols,CV_8UC1,grays_holder[id]);
-    imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurfFromColorMat.bmp",o);
+    //imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurfFromColorMat.bmp",o);
 }
 
 extern "C" {
@@ -160,7 +160,7 @@ void exeSurfFromRgb(int id,int width,int height,unsigned char * rgb){
 	//COLOR_mRGBA2RGBA
 	Mat dst(height,width,CV_8UC4);
 	cvtColor(img, dst, CV_BGRA2RGBA);
-    imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurfFromRgb.bmp",dst);
+    //imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurfFromRgb.bmp",dst);
 	
 	exeSurfFromColorMat(id,dst);
 }
@@ -172,7 +172,7 @@ void exeSurfFromRgb(int id,int width,int height,unsigned char * rgb){
  */
 void exeSurfFromGray(int id,int width,int height,unsigned char * gray){
         Mat img(height,width,CV_8UC1,gray);
-        imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurfFromGray.bmp",img);
+        //imwrite("/Users/maruyayoshihisa/Desktop/hoge/exeSurfFromGray.bmp",img);
         exeSurf(id,img);
 }
 
@@ -180,32 +180,5 @@ void exeSurfFromGray(int id,int width,int height,unsigned char * gray){
 int exeSurfFromYuv(int id, int width, int height, unsigned char * yuv) {
 	Mat myuv(height + height / 2, width, CV_8UC1, yuv);
 	exeSurfFromColorMat(id, myuv);
-
-	/*
-	 Mat gray(height, width, CV_8UC1, yuv);
-
-	 SurfFeatureDetector surf_detector; //SURF特徴点検出器 TODO: 引数について: http://opencv.jp/opencv-2.2/c/features2d_feature_detection_and_description.html
-	 vector<KeyPoint> trainKeypoints;
-
-	 normalize(gray, gray, 0, 255, NORM_MINMAX); //要らない??
-	 surf_detector.detect(gray,trainKeypoints);
-	 //lshのために、keypointのサイズを保存
-	 keypoints_size_holder[id] = trainKeypoints.size();
-	 // SURFに基づくディスクリプタ抽出器
-	 SurfDescriptorExtractor surf_extractor; //SURF特徴量抽出機
-	 Mat trainDescriptors;
-	 surf_extractor.compute(gray,trainKeypoints,trainDescriptors);
-	 cols_holder[id] = trainDescriptors.cols;
-	 rows_holder[id] = trainDescriptors.rows;
-	 int cols = trainDescriptors.cols;
-	 int rows = trainDescriptors.rows;
-	 descriptors_holder[id] = new float[cols * rows]; //TODO: 一旦freeする必要がるかも
-	 int count = 0;
-	 for(int i = 0; i < rows; i++){
-	 for(int j = 0; j < cols; j++){
-	 descriptors_holder[id][count] = trainDescriptors.at<float>(i,j);
-	 count++;
-	 }
-	 }*/
 }
 }

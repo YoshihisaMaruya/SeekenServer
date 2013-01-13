@@ -120,7 +120,7 @@ class ClinetManagerThread(thread_id: Int, socket: Socket) extends Thread {
           
           
           //TODO : デバック用なので後で消去
-          val req_os = new FileOutputStream("/Users/maruyayoshihisa/Desktop/hoge/request.obj")
+          /*val req_os = new FileOutputStream("/Users/maruyayoshihisa/Desktop/hoge/request.obj")
           val req_oos = new ObjectOutputStream(req_os)
           req_oos.writeObject(request)
           req_oos.close
@@ -130,7 +130,7 @@ class ClinetManagerThread(thread_id: Int, socket: Socket) extends Thread {
           val res_oos = new ObjectOutputStream(res_os)
           res_oos.writeObject(response)
           res_oos.close
-          res_os.close
+          res_os.close*/
           
           
           
